@@ -31,6 +31,7 @@ public class NotificationApp {
 
     @PreDestroy
     public void shutDown(){
+
         queueProcessor.KILL = true;
     }
 }

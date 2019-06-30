@@ -16,6 +16,10 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.io.IOException;
 
+/**
+ * Setting up the test environment for Notification system
+ * @author Mahalakshmi-Rajagopal
+ */
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest(classes = NotificationApp.class)
 @WebAppConfiguration

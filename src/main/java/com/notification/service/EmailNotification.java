@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Validate the email notification details and send the email notification
+ * Service to send the email notification
  * @author Mahalakshmi-Rajagopal
  */
 public class EmailNotification implements INotification {

@@ -39,13 +39,18 @@ If you want to send the email notification then you need to send the POST reques
 the request body
 
 uri: http://localhost:8080/notification/email
-json : {
-        "from":"master@sample.com",
-        "to":"student@sample.com",
-        "cc":"principal@sample.com",
-        "subject":"Welcome to class",
-        "message":"Assignment details"
-}
+json :[{
+      	"from":"master1@sample.com",
+      	"to":"student1@sample.com",
+      	"subject":"test1",
+      	"message":"test message1"
+      },{
+      	"from":"master2@sample.com",
+      	"to":"student2@sample.com",
+      	"subject":"test2",
+      	"message":"test message2"
+      }
+      ]
 
 Here in the input, "from" and "to" should have valid email address to successfully send the email notification. More than
 one email addresses can be separated with ";".
@@ -54,14 +59,18 @@ If you want to send the slack message notification then you need to send the POS
 the request body
 
 uri: http://localhost:8080/notification/slack
-json : {
-        "from":"master@sample.com",
-        "to":"student@sample.com",
-        "cc":"principal@sample.com",
-        "subject":"Welcome to class",
-        "message":"Assignment details"
-}
-
+json : [{
+             	"from":"master1@sample.com",
+             	"to":"student1@sample.com",
+             	"subject":"test1",
+             	"message":"test message1"
+             },{
+             	"from":"master2@sample.com",
+             	"to":"student2@sample.com",
+             	"subject":"test2",
+             	"message":"test message2"
+             }
+        ]
 Here in the input, "from" and "to" should have valid email address to successfully send the email notification. More than
 one email addresses can be separated with ";".
 

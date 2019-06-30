@@ -11,6 +11,10 @@ import java.util.Map;
 import static junit.framework.TestCase.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 
+/**
+ * Test the user input fields to the notification system
+ * @author Mahalakshmi-Rajagopal
+ */
 public class ValidationUtilTest {
     private ValidationUtil validationUtil;
 

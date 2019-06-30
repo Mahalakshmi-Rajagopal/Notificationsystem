@@ -3,6 +3,10 @@ package com.notification.util;
 import java.util.Map;
 import java.util.regex.Pattern;
 
+/**
+ * Validate the user input to the notification system
+ * @author Mahalakshmi-Rajagopal
+ */
 public class ValidationUtil {
 
     public static String regex =

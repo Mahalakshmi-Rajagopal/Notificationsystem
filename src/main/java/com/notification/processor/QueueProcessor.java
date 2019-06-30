@@ -4,6 +4,7 @@ import com.notification.service.INotification;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PreDestroy;
 import javax.mail.MessagingException;
 import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
@@ -11,6 +12,10 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Add the incoming notification requests to blocking queue and send the notification as per the order
+ * @author Mahalakshmi-Rajagopal
+ */
 @Service
 @Scope("singleton")
 public final class QueueProcessor {
@@ -59,6 +64,11 @@ public final class QueueProcessor {
 
            }
        }
+   }
+
+   @PreDestroy
+    public void shutDown(){
+       KILL = true;
    }
 
 }

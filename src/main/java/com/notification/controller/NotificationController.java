@@ -7,12 +7,13 @@ import com.notification.factory.NotificationFactory;
 import com.notification.factory.SlackNotificationFactory;
 import com.notification.processor.QueueProcessor;
 import com.notification.service.INotification;
+import com.notification.wrapper.NotificationDetailsWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
+import java.util.*;
 
 /**
  * REST controller for the notification system
@@ -30,24 +31,35 @@ public class NotificationController {
      * @throws Exception
      */
     @PostMapping(path="/notification/email")
-    public String emailNotification(@RequestBody String userInput) throws Exception {
+    public List<String> emailNotification(@RequestBody String userInput) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, Object> jsonMap = objectMapper.readValue(userInput,Map.class);
+        List<NotificationDetailsWrapper> jsonArray = Arrays.asList(objectMapper.readValue(userInput,NotificationDetailsWrapper[].class));
+        List<String> responseMessages = new ArrayList<>();
+        for(NotificationDetailsWrapper notificationDetailsWrapper: jsonArray){
+            Map<String, Object> jsonMap = new HashMap<>();
+            jsonMap.put("from", notificationDetailsWrapper.getFrom());
+            jsonMap.put("to", notificationDetailsWrapper.getTo());
+            jsonMap.put("cc", notificationDetailsWrapper.getCc());
+            jsonMap.put("subject", notificationDetailsWrapper.getSubject());
+            jsonMap.put("message", notificationDetailsWrapper.getMessage());
+
 
         NotificationFactory emailNotificationFactory = new EmailNotificationFactory();
         NotificationDetails notificationDetails = new NotificationDetails.
-                NotificationDetailsBuilder((String)jsonMap.get("from"),(String)jsonMap.get("to"), (String)jsonMap.get("message")).subject((String)jsonMap.get("subject")).
-                cc((String)jsonMap.get("cc")).bcc((String)jsonMap.get("bcc")).build();
+                NotificationDetailsBuilder( notificationDetailsWrapper.getFrom(), notificationDetailsWrapper.getTo(), notificationDetailsWrapper.getMessage()).subject(notificationDetailsWrapper.getSubject()).
+                cc(notificationDetailsWrapper.getCc()).bcc(notificationDetailsWrapper.getBcc()).build();
         INotification emaiINotification =emailNotificationFactory.createNotification(notificationDetails);
         if(!emaiINotification.validate(jsonMap))
-            return "Some of the input is not correct";
+            continue;
         try{
             queueProcessor.addQueueProcessor(emaiINotification);
         }catch(InterruptedException e){
             e.printStackTrace();
         }
 
-        return "Email sent successfully to " + (String)jsonMap.get("to") ;
+        responseMessages.add("Email successfully sent to " + notificationDetailsWrapper.getTo());
+        }
+        return responseMessages ;
     }
     /**
      * Rest service method for email notification
@@ -56,24 +68,32 @@ public class NotificationController {
      * @throws Exception
      */
     @PostMapping(path="/notification/slack")
-    public String slackNotification(@RequestBody String userInput) throws Exception {
+    public List<String> slackNotification(@RequestBody String userInput) throws Exception {
         ObjectMapper objectMapper = new ObjectMapper();
-        Map<String, Object> jsonMap = objectMapper.readValue(userInput, Map.class);
+        List<NotificationDetailsWrapper> jsonArray = Arrays.asList(objectMapper.readValue(userInput,NotificationDetailsWrapper[].class));
+        List<String> responseMessages = new ArrayList<>();
+        for(NotificationDetailsWrapper notificationDetailsWrapper: jsonArray) {
+            Map<String, Object> jsonMap = new HashMap<>();
+            jsonMap.put("from", notificationDetailsWrapper.getFrom());
+            jsonMap.put("to", notificationDetailsWrapper.getTo());
+            jsonMap.put("subject", notificationDetailsWrapper.getSubject());
+            jsonMap.put("message", notificationDetailsWrapper.getMessage());
 
-        NotificationFactory slackNotificationFactory = new SlackNotificationFactory();
-        NotificationDetails notificationDetails = new NotificationDetails.
-                NotificationDetailsBuilder((String)jsonMap.get("from"),(String)jsonMap.get("to"), (String)jsonMap.get("message"))
-                .subject((String)jsonMap.get("subject")).build();
-        INotification slackNotification =slackNotificationFactory.createNotification(notificationDetails);
-        if(!slackNotification.validate(jsonMap))
-            return "Some of the input is not correct";
-        try{
-            queueProcessor.addQueueProcessor(slackNotification);
-        }catch(InterruptedException e){
-            e.printStackTrace();
+            NotificationFactory slackNotificationFactory = new SlackNotificationFactory();
+            NotificationDetails notificationDetails = new NotificationDetails.
+                    NotificationDetailsBuilder(notificationDetailsWrapper.getFrom(), notificationDetailsWrapper.getTo(), notificationDetailsWrapper.getMessage())
+                    .subject(notificationDetailsWrapper.getSubject()).build();
+            INotification slackNotification = slackNotificationFactory.createNotification(notificationDetails);
+            if (!slackNotification.validate(jsonMap))
+                continue;
+            try {
+                queueProcessor.addQueueProcessor(slackNotification);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            responseMessages.add("Slack message successfully sent to " + notificationDetailsWrapper.getTo());
         }
-
-        return "Slack message sent to " + (String)jsonMap.get("to");
+        return responseMessages;
     }
 
 }

@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.notification.test.util.ValidationUtilTest" tests="24" skipped="0" failures="0" errors="0" timestamp="2019-06-29T19:30:19" hostname="Veera" time="0.045">
+<testsuite name="com.notification.test.util.ValidationUtilTest" tests="24" skipped="0" failures="0" errors="0" timestamp="2019-06-30T10:48:19" hostname="Veera" time="0.051">
   <properties/>
-  <testcase name="testEmailAddress1" classname="com.notification.test.util.ValidationUtilTest" time="0.007"/>
-  <testcase name="testEmailAddress2" classname="com.notification.test.util.ValidationUtilTest" time="0.001"/>
-  <testcase name="testEmailAddress3" classname="com.notification.test.util.ValidationUtilTest" time="0.006"/>
-  <testcase name="testEmailAddress4" classname="com.notification.test.util.ValidationUtilTest" time="0.001"/>
+  <testcase name="testEmailAddress1" classname="com.notification.test.util.ValidationUtilTest" time="0.003"/>
+  <testcase name="testEmailAddress2" classname="com.notification.test.util.ValidationUtilTest" time="0.0"/>
+  <testcase name="testEmailAddress3" classname="com.notification.test.util.ValidationUtilTest" time="0.0"/>
+  <testcase name="testEmailAddress4" classname="com.notification.test.util.ValidationUtilTest" time="0.0"/>
   <testcase name="testEmailAddress5" classname="com.notification.test.util.ValidationUtilTest" time="0.0"/>
-  <testcase name="testEmailAddress6" classname="com.notification.test.util.ValidationUtilTest" time="0.001"/>
+  <testcase name="testEmailAddress6" classname="com.notification.test.util.ValidationUtilTest" time="0.0"/>
   <testcase name="testEmailAddress7" classname="com.notification.test.util.ValidationUtilTest" time="0.001"/>
   <testcase name="testEmailAddress8" classname="com.notification.test.util.ValidationUtilTest" time="0.001"/>
   <testcase name="testEmailAddress9" classname="com.notification.test.util.ValidationUtilTest" time="0.001"/>
   <testcase name="testEmailAddress10" classname="com.notification.test.util.ValidationUtilTest" time="0.0"/>
-  <testcase name="testEmailAddress11" classname="com.notification.test.util.ValidationUtilTest" time="0.001"/>
+  <testcase name="testEmailAddress11" classname="com.notification.test.util.ValidationUtilTest" time="0.0"/>
   <testcase name="testEmailAddress12" classname="com.notification.test.util.ValidationUtilTest" time="0.001"/>
-  <testcase name="testEmailAddress13" classname="com.notification.test.util.ValidationUtilTest" time="0.0"/>
+  <testcase name="testEmailAddress13" classname="com.notification.test.util.ValidationUtilTest" time="0.001"/>
   <testcase name="testEmailAddress14" classname="com.notification.test.util.ValidationUtilTest" time="0.001"/>
   <testcase name="testEmailAddress15" classname="com.notification.test.util.ValidationUtilTest" time="0.0"/>
-  <testcase name="testEmailAddress16" classname="com.notification.test.util.ValidationUtilTest" time="0.0"/>
+  <testcase name="testEmailAddress16" classname="com.notification.test.util.ValidationUtilTest" time="0.001"/>
   <testcase name="testEmailAddress17" classname="com.notification.test.util.ValidationUtilTest" time="0.001"/>
   <testcase name="testEmailAddress18" classname="com.notification.test.util.ValidationUtilTest" time="0.001"/>
-  <testcase name="testEmailAddress19" classname="com.notification.test.util.ValidationUtilTest" time="0.001"/>
-  <testcase name="testEmailAddress20" classname="com.notification.test.util.ValidationUtilTest" time="0.001"/>
+  <testcase name="testEmailAddress19" classname="com.notification.test.util.ValidationUtilTest" time="0.0"/>
+  <testcase name="testEmailAddress20" classname="com.notification.test.util.ValidationUtilTest" time="0.0"/>
   <testcase name="testEmailAddress21" classname="com.notification.test.util.ValidationUtilTest" time="0.0"/>
-  <testcase name="testValidateUserInput1" classname="com.notification.test.util.ValidationUtilTest" time="0.0"/>
-  <testcase name="testValidateUserInput2" classname="com.notification.test.util.ValidationUtilTest" time="0.001"/>
+  <testcase name="testValidateUserInput1" classname="com.notification.test.util.ValidationUtilTest" time="0.001"/>
+  <testcase name="testValidateUserInput2" classname="com.notification.test.util.ValidationUtilTest" time="0.022"/>
   <testcase name="testValidateUserInput3" classname="com.notification.test.util.ValidationUtilTest" time="0.002"/>
-  <system-out><![CDATA[]]></system-out>
+  <system-out><![CDATA[Email sent from master1@sample.com to student1@sample.com
+Email sent from master1@sample.com to student2@sample.com
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

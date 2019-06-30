@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.Map;
 
 /**
- * Validate the email notification details and send the email notification
+ * Service to send the slack message notification
  * @author Mahalakshmi-Rajagopal
  */
 public class SlackNotification implements INotification {
